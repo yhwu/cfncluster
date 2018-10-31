@@ -16,15 +16,6 @@
 #$ -tc 10
 
 
-# Job array
-if [ -z "${SGE_TASK_ID}" ]; then
-    SGE_TASK_ID=1
-fi
-allinputs=('None' 'A' 'B')
-myinput = ${allinputs[$SGE_TASK_ID]}
-echo $SGE_TASK_ID $myinput
-
-
 # hold a job
 qalter -h u $jobid
 qalter -h U $jobid # unhold
