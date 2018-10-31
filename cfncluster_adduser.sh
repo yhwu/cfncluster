@@ -8,7 +8,8 @@
 # awk -F: '/\/home/ {printf "%s,%s\n",$1,$3}' /etc/passwd > /home/ec2-user/cfnclusterusers.txt
 # chmod -w /home/ec2-user/cfnclusterusers.txt
 #
-# copy this file to S3 and make it public readable
+# need linux line ending, copy this file to S3 and make it public readable
+# dos2unix cfncluster_adduser.sh
 # aws s3 cp --acl public-read cfncluster_adduser.sh s3://xxx/cfncluster_adduser.sh
 #
 
