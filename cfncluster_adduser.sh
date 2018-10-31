@@ -21,3 +21,5 @@ while read USERNAME USERID
 		useradd -M -u $USERID $USERNAME
 	fi	
 done < "/home/ec2-user/cfnclusterusers.txt"
+
+exit 0
