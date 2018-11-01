@@ -40,3 +40,12 @@ qhost
 sudo su sgeadmin
 qconf -mconf
 qconf -rattr queue rerun TRUE all.q
+
+
+## deal with hosts that are terminated but still registered by SGE
+# https://forums.aws.amazon.com/thread.jspa?threadID=241553
+sudo su sgeadmin
+qconf -sql
+qmod -d all.q
+qdel -f 307
+qconf -de ip-10-0-0-xx
