@@ -35,6 +35,9 @@ reboot
 ```
 
 #### Add new user
+- add newuser in master node  
+- modify /home/ec2-user/cfnclusteruser.txt in order for post install script to pick up user information 
+
 ```
 sudo adduser newuser
 sudo su - newuser
@@ -45,4 +48,7 @@ cat ~/.ssh/id_rsa.pub > ~/.ssh/authorized_keys
 chmod 700 .ssh
 chmod 600 .ssh/authorized_keys
 # send ~/.ssh/id_rsa to newuser
+
+# login as ec20-user
+awk -F: '/\/home/ {printf "%s,%s\n",$1,$3}' /etc/passwd > /home/ec2-user/cfnclusterusers.txt
 ```
