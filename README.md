@@ -51,3 +51,12 @@ chmod 600 .ssh/authorized_keys
 # login as ec20-user
 awk -F: '/\/home/ {printf "%s,%s\n",$1,$3}' /etc/passwd > /home/ec2-user/cfnclusterusers.txt
 ```
+
+
+#### Request number of nodes
+```
+ASG=cfncluster-vpchpc-ComputeFleet-Jxxx9
+aws autoscaling describe-auto-scaling-groups --auto-scaling-group-names $ASG
+aws autoscaling set-desired-capacity --auto-scaling-group-name $ASG --desired-capacity 4
+aws autoscaling describe-auto-scaling-instances
+```
