@@ -65,7 +65,7 @@ aws autoscaling describe-auto-scaling-instances
 # maintain 5 nodes
 aws autoscaling update-auto-scaling-group --auto-scaling-group-name $ASG --min-size 5 --max-size 5
 
-## stop and resume Terminate
+# stop and resume Terminate
 aws autoscaling suspend-processes --auto-scaling-group-name $ASG --scaling-processes  Terminate
 aws autoscaling resume-processes --auto-scaling-group-name $ASG --scaling-processes  Terminate
 ```
