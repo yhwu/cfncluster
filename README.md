@@ -57,6 +57,15 @@ awk -F: '/\/home/ {printf "%s,%s\n",$1,$3}' /etc/passwd > /home/ec2-user/cfnclus
 ```
 ASG=cfncluster-vpchpc-ComputeFleet-Jxxx9
 aws autoscaling describe-auto-scaling-groups --auto-scaling-group-names $ASG
+
+# request 4 nodes, note after idling more than evaluation periods, they will be terminated.
 aws autoscaling set-desired-capacity --auto-scaling-group-name $ASG --desired-capacity 4
 aws autoscaling describe-auto-scaling-instances
+
+# maintain 5 nodes
+aws autoscaling update-auto-scaling-group --auto-scaling-group-name $ASG --min-size 5 --max-size 5
+
+## stop and resume Terminate
+aws autoscaling suspend-processes --auto-scaling-group-name $ASG --scaling-processes  Terminate
+aws autoscaling resume-processes --auto-scaling-group-name $ASG --scaling-processes  Terminate
 ```
