@@ -33,3 +33,16 @@ sudo resize2fs /dev/xvdb
 sudo growpart /dev/xvda 1
 reboot
 ```
+
+#### Add new user
+```
+sudo adduser newuser
+sudo su - newuser
+cd
+mkdir .ssh
+ssh-keygen -t rsa
+cat ~/.ssh/id_rsa.pub > ~/.ssh/authorized_keys
+chmod 700 .ssh
+chmod 600 .ssh/authorized_keys
+# send ~/.ssh/id_rsa to newuser
+```
