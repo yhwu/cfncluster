@@ -7,15 +7,19 @@ Create, customize, usage
 - Post install script must exit 0, and must end lines with linux line ending.
 - Add user on Master, see https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/managing-users.html 
 
+
+#### Create cluster
 ```
+# the create process should finish in a few minutes, login the master or compute nodes to check logs.
 cfncluster configure -c ~/.cfncluster/cfncluster.config
 cfncluster create --norollback -c ~/.cfncluster/cfncluster.config vpchpc
 cfncluster list
 cfncluster delete vpchpc
 ```
 
+
 #### Change master and compute volumes
-- compute node volume can be changed from cloudFormation console by configuration
+- compute node volume can be changed from CloudFormation console by configuration
 - master node volume can be changed from EC2 console by the instance 
 - after changing the volumes, follow the instructions from https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/recognize-expanded-volume-linux.html
 
@@ -28,9 +32,10 @@ lsblk
 
 # to extend xvdb file system
 sudo resize2fs /dev/xvdb
+
 # to extend xvda1 partition
 sudo growpart /dev/xvda 1
-reboot
+sudo reboot
 ```
 
 #### Add new user
