@@ -53,7 +53,7 @@ chmod 700 .ssh
 chmod 600 .ssh/authorized_keys
 # send ~/.ssh/id_rsa to newuser
 
-# login as ec20-user
+# login as ec2-user
 awk -F: '/\/home/ {printf "%s,%s\n",$1,$3}' /etc/passwd > /home/ec2-user/cfnclusterusers.txt
 ```
 
