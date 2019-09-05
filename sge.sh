@@ -47,5 +47,6 @@ qconf -rattr queue rerun TRUE all.q
 sudo su sgeadmin
 qconf -sql
 qmod -d all.q
+# make sure to delete all registed jobs from all usters for the queue.
 qdel -f 307
 qconf -de ip-10-0-0-xx
