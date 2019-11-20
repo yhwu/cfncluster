@@ -51,3 +51,14 @@ qmod -d all.q
 qdel -f 307
 qconf -de ip-10-0-0-xx
 qhost | grep ip-10 | awk '{print $1}' | xargs -n 1 qconf -de
+
+
+## resub jobs on runaway nodes, run as user, note qresub before qdel
+qhost | awk '/ip/ && $NF=="-"' > gonenodes.txt
+gnodes=`awk '{print $1}' gonenodes.txt | xargs | sed 's/ /\\\|/g'`
+qstat -u "*" | grep $gnodes > stalejobs.txt
+awk '{print $1}' stalejobs.txt | xargs -n 1 qresub
+## remove runaway nodes from SGE 
+sudo su sgeadmin
+awk '{print $1}' stalejobs.txt | xargs -n 1 qdel -f 
+awk '{print $1}' gonenodes.txt | xargs -n 1 qconf -de
