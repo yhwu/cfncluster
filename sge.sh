@@ -32,6 +32,13 @@ qstat
 qdel
 qhost
 
+
+## log rotate
+# log path: $SGE_ROOT/$SGE_CELL/common
+# script:  $SGE_ROOT/util/logchecker.sh 
+# copy the script to another folder, modify variables in the script, and schedule it in crontab.
+
+
 ## rerun a job in case the host went away
 # https://forums.aws.amazon.com/thread.jspa?threadID=178780
 # If you modify the SGE configuration with "qconf -mconf" (as root) and set "reschedule_unknown" to a non-zero value, a job submitted as re-runnable (-r y) will automatically be rerun on another host once it becomes available.
