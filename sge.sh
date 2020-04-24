@@ -50,7 +50,11 @@ qmod -d all.q
 # make sure to delete all registed jobs from all usters for the queue.
 qdel -f 307
 qconf -de ip-10-0-0-xx
-qhost | grep ip-10 | awk '{print $1}' | xargs -n 1 qconf -de
+qhost | awk '/ip/{print $1}' | xargs -n 1 qconf -de
+# if Host object is still referenced in cluster queue "all.q". Use the following to remove the host. 
+# If nothing left in allhosts, use None 
+qconf -mq all.q
+qconf -mhgrp @allhosts
 
 
 ## resub jobs on runaway nodes, run as user, note qresub before qdel
