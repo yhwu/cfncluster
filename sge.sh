@@ -36,7 +36,17 @@ qhost
 ## log rotate
 # log path: $SGE_ROOT/$SGE_CELL/common
 # script:  $SGE_ROOT/util/logchecker.sh 
-# copy the script to another folder, modify variables in the script, and schedule it in crontab.
+# copy the script to another folder, modify variables in the script, and schedule it in crontab as sgeadmin.
+UNCONFIGURED=no
+ECHO=echo
+SGE_ROOT=/opt/sge
+SGE_CELL=default
+ACTION_ON=4
+ACTIONSIZE=0
+KEEPOLD=3
+GZIP=yes
+ACCT=yes
+EXECD_SPOOL=/opt/sge/default/spool
 
 
 ## rerun a job in case the host went away
